@@ -2,6 +2,9 @@
 
 A Quasar Project
 
+## Quasar web site
+- https://quasar.dev/
+
 ## Install the dependencies
 
 ```bash
