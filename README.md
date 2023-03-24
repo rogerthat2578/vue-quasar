@@ -2,6 +2,12 @@
 
 A Quasar Project
 
+## Quasar web site
+- https://quasar.dev/
+
+Quasar-CLI
+- https://quasar.dev/start/quasar-cli
+
 ## Install the dependencies
 
 ```bash
