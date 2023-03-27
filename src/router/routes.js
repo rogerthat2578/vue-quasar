@@ -4,8 +4,18 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [
       { path: "", component: () => import("pages/IndexPage.vue") },
-      { path: "Typography", component: () => import("pages/Typography.vue") },
-      { path: "Test01", component: () => import("pages/Test01.vue") },
+      {
+        path: "MainContents",
+        component: () => import("pages/MainContents.vue"),
+      },
+      {
+        path: "OrderInquiry",
+        component: () => import("src/pages/OrderInquiry.vue"),
+      },
+      {
+        path: "OutsourcingOrderInquiry",
+        component: () => import("src/pages/OutsourcingOrderInquiry.vue"),
+      },
     ],
   },
 

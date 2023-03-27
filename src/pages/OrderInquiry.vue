@@ -1,5 +1,5 @@
 <template>
-  <div>Test01</div>
+  <div>OrderInquiry</div>
 </template>
 
 <script setup></script>

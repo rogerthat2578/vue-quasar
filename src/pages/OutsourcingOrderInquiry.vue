@@ -1,5 +1,5 @@
 <template>
-  <div>Typography</div>
+  <div>OutsourcingOrderInquiry</div>
 </template>
 
 <script setup></script>
