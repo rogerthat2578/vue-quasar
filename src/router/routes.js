@@ -10,11 +10,11 @@ const routes = [
       },
       {
         path: "OrderInquiry",
-        component: () => import("src/pages/OrderInquiry.vue"),
+        component: () => import("pages/OrderInquiry.vue"),
       },
       {
         path: "OutsourcingOrderInquiry",
-        component: () => import("src/pages/OutsourcingOrderInquiry.vue"),
+        component: () => import("pages/OutsourcingOrderInquiry.vue"),
       },
     ],
   },

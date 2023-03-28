@@ -64,6 +64,9 @@
 .toolbar-title label {
   padding-left: 1%;
 }
+.toolbar-user {
+  display: inline-flex;
+}
 
 .menu-drawer {
   background-color: #0f1d6c;
@@ -83,4 +86,13 @@
   .web {
     display: none;
   }
+}
+@media (min-width: 720px) {
+  .mobile {
+    display: none;
+  }
+}
+
+.route-tabs-items {
+  align-items: flex-end;
 }

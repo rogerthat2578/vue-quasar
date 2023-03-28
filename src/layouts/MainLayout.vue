@@ -13,11 +13,24 @@
         />
 
         <q-toolbar-title class="toolbar-title">
-          <img class="web" src="icons/logo.png" />
-          <!-- <label>SCM</label> -->
+          <img
+            class="web"
+            src="icons/logo.png"
+            @click="toMenu({ title: '메인', to: '/MainContents' })"
+          />
+          <img
+            class="mobile"
+            src="icons/favicon-32x32.png"
+            @click="toMenu({ title: '메인', to: '/MainContents' })"
+          />
+          <label>{{ titleName }}</label>
         </q-toolbar-title>
 
         <!-- <div class="web">Quasar v{{ $q.version }}</div> -->
+        <div class="toolbar-user">
+          <img src="icons/user.png" alt="유저이미지" />
+          <!-- 부서, 이름 추가 -->
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -33,6 +46,7 @@
           v-for="link in purchaseMenuList"
           :key="link.title"
           v-bind="link"
+          @click="toMenu(link)"
         />
       </q-list>
       <q-list>
@@ -41,17 +55,32 @@
           v-for="link in outsourcingMenuList"
           :key="link.title"
           v-bind="link"
+          @click="toMenu(link)"
         />
       </q-list>
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <!-- <router-view /> -->
+      <q-tabs align="left">
+        <q-route-tab
+          v-for="r in tabList"
+          :key="r.to"
+          :to="r.to"
+          :label="r.label"
+          exact
+          content-class=""
+        >
+          <!-- route-tabs-items -->
+          <img src="icons/close.png" style="position: absolute" />
+        </q-route-tab>
+      </q-tabs>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
+// 구매 메뉴
 const purchaseList = [
   {
     title: "구매 발주 품목 조회",
@@ -67,7 +96,7 @@ const purchaseList = [
     to: "/PurchaseDeliverySearch",
   },
 ];
-
+// 외주가공 메뉴
 const outsourcingList = [
   {
     title: "외주 발주 품목 조회",
@@ -92,13 +121,49 @@ const outsourcingList = [
 </script>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
+import { useRouter } from "vue-router";
 
 const leftDrawerOpen = ref(false);
 const purchaseMenuList = purchaseList;
 const outsourcingMenuList = outsourcingList;
+const router = useRouter();
+const titleName = ref("");
+let tabList = ref([]);
+let reloadYN = ref(false);
+
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };
+
+const toMenu = (obj = {}) => {
+  titleName.value = obj.title || "";
+  const objTo = obj.to || "";
+  if (objTo.indexOf("MainContents") > -1) router.push({ path: objTo });
+
+  // 탭 추가, 같은 탭 추가 방지
+  const sameIdx = tabList.value.findIndex((v) => v.to === objTo);
+  if (sameIdx > -1) {
+    if (tabList.value.filter((v) => v.to === objTo) > 1)
+      tabList.value.splice(sameIdx, 1);
+  } else {
+    obj.label = obj.title || "";
+    tabList.value.push(obj);
+  }
+};
+
+onMounted(() => {
+  /**
+   * 브라우저 새로고침 수행 후처리 기반 추가
+   */
+  const entries = performance.getEntriesByType("navigation");
+  for (let i = 0; i < entries.length; i++) {
+    if (entries[i].type === "reload") {
+      reloadYN.value = true;
+      break;
+    }
+  }
+  // if (reloadYN.value) router.push({ path: "MainContents" });
+});
 </script>
