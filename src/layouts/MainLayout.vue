@@ -68,11 +68,15 @@
           :key="r.to"
           :to="r.to"
           :label="r.label"
+          :tabindex="qq"
           exact
-          content-class=""
+          content-class="close-tab"
         >
-          <!-- route-tabs-items -->
-          <img src="icons/close.png" style="position: absolute" />
+          <img
+            src="icons/close.png"
+            class="close-img"
+            @click="closeTab(r.to)"
+          />
         </q-route-tab>
       </q-tabs>
     </q-page-container>
@@ -132,6 +136,7 @@ const router = useRouter();
 const titleName = ref("");
 let tabList = ref([]);
 let reloadYN = ref(false);
+let qq = ref("");
 
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
@@ -151,6 +156,19 @@ const toMenu = (obj = {}) => {
     obj.label = obj.title || "";
     tabList.value.push(obj);
   }
+};
+
+const closeTab = (t = "") => {
+  // a 태그로 인한 탭 변경 이벤트 막기
+  event.preventDefault();
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+  if (t) {
+    const sameIdx = tabList.value.findIndex((v) => v.to === t);
+    tabList.value.splice(sameIdx, 1);
+  }
+
+  console.log(qq.value);
 };
 
 onMounted(() => {

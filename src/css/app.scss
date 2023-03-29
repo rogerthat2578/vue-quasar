@@ -93,6 +93,14 @@
   }
 }
 
-.route-tabs-items {
-  align-items: flex-end;
+.close-img {
+  position: absolute;
+  right: 0;
+}
+.close-tab {
+  padding-right: 20px;
+}
+.close-tab div {
+  line-height: inherit;
+  font-weight: bold;
 }
