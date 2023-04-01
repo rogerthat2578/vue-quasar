@@ -55,3 +55,6 @@ See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-
 1. 올인원 프레임워크
 - 웬만한 UI 컴포넌트, 플러그인, 컴포지션API 등 제공함
 - Cordova or Capacitor를 이용한 모바일 앱(Android, IOS), 데스크톱 앱 등으로 배포할 수 있도록 빌드 가이드를 제공함
+
+2. Quasar Framework 초기 세팅 시 참고했던 영상 링크
+- https://www.youtube.com/watch?v=Y2mzBb0OG1k&list=PLP717OpBMkmHe-nPPkRU76J7Hil1L5Xfg
